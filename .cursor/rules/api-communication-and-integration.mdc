@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Establish clear interfaces between the frontend and backend. Decide on communication protocols (such as REST or GraphQL) and maintain consistency in endpoint structures.

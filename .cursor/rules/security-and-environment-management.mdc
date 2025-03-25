@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Implement security measures such as API authentication and HTTPS. Manage environment-specific variables carefully to ensure smooth transitions between development, testing, and production environments.

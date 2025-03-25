@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Prioritize both unit and integration testing to catch issues early. Regular testing is key to ensuring that both the frontend and backend remain robust and reliable.

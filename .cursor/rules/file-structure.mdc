@@ -1,0 +1,7 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+- **Frontend (Next.js application):** `root/frontend/(nextjsapp)`
+- **Backend (Go project):** `root/backend(goprojecthere)`

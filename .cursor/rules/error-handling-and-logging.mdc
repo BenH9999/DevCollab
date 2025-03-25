@@ -1,0 +1,7 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+ - **Frontend:** Ensure that API errors are handled gracefully, providing user-friendly feedback when issues occur.  
+  - **Backend:** Implement robust error logging and return meaningful HTTP status codes to facilitate effective troubleshooting.

@@ -1,0 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Structure the code by separating concerns:  
+  - **Frontend:** Break the user interface into reusable, modular components.  
+  - **Backend:** Organize the code by separating routing, business logic, and data access layers.

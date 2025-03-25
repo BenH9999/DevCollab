@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Maintain a clear separation between the frontend and backend code. This organization simplifies navigation and improves maintainability.
