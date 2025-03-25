@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: 79 70 229; /* indigo-600 */
+    --color-secondary: 59 130 246; /* blue-500 */
+    --color-accent: 147 51 234; /* purple-600 */
+  }
+  
+  body {
+    @apply text-gray-800;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
