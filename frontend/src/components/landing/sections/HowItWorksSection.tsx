@@ -1,3 +1,4 @@
+// frontend/src/components/landing/sections/HowItWorksSection.tsx
 import { StepItem } from '@/components/ui/StepItem';
 
 export function HowItWorksSection() {
@@ -24,7 +25,7 @@ export function HowItWorksSection() {
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-16" style={{ color: '#1F2937' }}>How DevCollab Works</h2>
         
-        <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+        <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden hover:-translate-y-2 transition-all duration-300">
           <div className="p-8">
             <div className="flex flex-col gap-8">
               {steps.map((step) => (

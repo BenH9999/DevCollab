@@ -1,3 +1,4 @@
+// frontend/src/components/landing/sections/CTASection.tsx
 import { Button } from '@/components/ui/Button';
 
 export function CTASection() {

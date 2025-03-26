@@ -1,3 +1,4 @@
+// frontend/src/components/ui/StepItem.tsx
 interface StepItemProps {
   number: number;
   title: string;
