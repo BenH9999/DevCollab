@@ -6,7 +6,7 @@ export function HeroSection() {
     <header className="container mx-auto px-4 pt-20 pb-32 md:pt-32 md:pb-40">
       <div className="flex flex-col items-center text-center">
         <div className="relative mb-6">
-          <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">
+          <h1 className="gradient-title">
             DevCollab
           </h1>
           <span className="absolute -bottom-3 left-0 right-0 h-1 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-full"></span>
