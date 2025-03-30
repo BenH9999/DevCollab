@@ -12,7 +12,7 @@ export function Header() {
           </Link>
           <div className="flex gap-4">
             <Button href="/auth/login" variant='primary'>Login</Button>
-            <Button href="/auth/signup" variant='secondary'>Signup</Button>
+            <Button href="/auth/register" variant='secondary'>Signup</Button>
           </div>
         </div>
       </div>

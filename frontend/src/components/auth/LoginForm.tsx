@@ -1,3 +1,4 @@
+// frontend/src/components/auth/LoginForm.tsx
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -11,7 +12,7 @@ export function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
@@ -47,7 +48,7 @@ export function LoginForm() {
     <div className="w-full max-w-sm">
       <FormError message={error} className="mb-4" />
       
-      <form className="space-y-6" onSubmit={handleSubmit}>
+      <form className="space-y-6" onSubmit={handleLogin}>
         <Input
           id="email"
           name="email"
