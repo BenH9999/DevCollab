@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Input, FormError, SubmitButton } from '@/components/ui';
 import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext';
 
 export function RegisterForm() {
   const [email, setEmail] = useState('');
@@ -12,29 +13,22 @@ export function RegisterForm() {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const { register } = useAuth();
 
-  const handleRegister = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, name, password }),
-        credentials: 'include',
-      });
-
-      const data = await response.json();
-
-      if(!response.ok) {
-        throw new Error(data.message || 'Registration failed');
+      // Use the register function from AuthContext
+      const result = await register(name, email, password);
+      
+      if (!result.success) {
+        throw new Error(result.error);
       }
 
-      localStorage.setItem('isLoggedIn', 'true');
+      // Navigate to dashboard on success
       router.push('/dashboard');
       router.refresh();
     } catch (err: any) {
@@ -48,7 +42,7 @@ export function RegisterForm() {
     <div className="w-full max-w-sm">
         <FormError message={error} className="mb-4" />
 
-        <form className="space-y-6" onSubmit={handleRegister}>
+        <form className="space-y-6" onSubmit={handleSubmit}>
             <Input
                 id="name"
                 name="name"

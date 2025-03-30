@@ -1,6 +1,7 @@
 // frontend/src/app/layout.tsx
 import "@/styles/globals.css";
 import type { Metadata } from 'next';
+import { AuthProvider } from '@/context/AuthContext';
 
 export const metadata: Metadata = {
   title: 'DevCollab - Real-Time Collaborative Editor',
@@ -11,7 +12,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="scroll-smooth">
       <body className="antialiased min-h-screen">
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
