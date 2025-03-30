@@ -1,10 +1,10 @@
 // frontend/src/app/auth/login/page.tsx
+import { AuthPage, LoginForm } from '@/components/auth';
+
 export default function LoginPage() {
   return (
-    <div>
-      <h1 className="gradient-title">
-        Login
-      </h1>
-    </div>
+    <AuthPage title="Login">
+      <LoginForm />
+    </AuthPage>
   );
 }

@@ -10,6 +10,8 @@ interface ButtonProps {
   variant?: ButtonVariant;
   className?: string;
   onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
 }
 
 export function Button({
@@ -18,6 +20,8 @@ export function Button({
   variant = 'primary',
   className = '',
   onClick,
+  type = 'button',
+  disabled = false,
 }: ButtonProps) {
   const baseClasses = 'px-8 py-3 font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-200';
   
@@ -26,9 +30,11 @@ export function Button({
     secondary: 'bg-white hover:bg-gray-50 text-indigo-600 border border-indigo-100',
   };
   
-  const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${className}`;
+  const disabledClasses = disabled ? 'opacity-50 cursor-not-allowed' : '';
   
-  if (href) {
+  const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${disabledClasses} ${className}`;
+  
+  if (href && !disabled) {
     return (
       <Link href={href} className={combinedClasses}>
         {children}
@@ -37,7 +43,12 @@ export function Button({
   }
   
   return (
-    <button onClick={onClick} className={combinedClasses}>
+    <button 
+      type={type} 
+      onClick={onClick} 
+      disabled={disabled}
+      className={combinedClasses}
+    >
       {children}
     </button>
   );
