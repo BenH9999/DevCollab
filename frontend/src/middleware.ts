@@ -48,16 +48,16 @@ export function middleware(request: NextRequest) {
   return NextResponse.next();
 }
 
+const generateMatcherPatterns = (routes: string[]) => {
+  return routes.map(route =>  `${route}/:path*`);
+}
+
 // Configure which paths middleware runs on
 export const config = {
   matcher: [
     // Protected routes
-    '/dashboard/:path*',
-    '/profile/:path*',
-    '/projects/:path*',
-    '/editor/:path*',
+    ...generateMatcherPatterns(protectedRoutes),
     // Auth routes
-    '/auth/login',
-    '/auth/register',
+    ...generateMatcherPatterns(authRoutes),
   ],
 }; 
