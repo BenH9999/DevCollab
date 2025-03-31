@@ -10,7 +10,10 @@ import (
 )
 
 func main() {
-	db.Connect()
+	err := db.Connect()
+	if err != nil {
+		log.Fatalf("Failed to connect to database: %v", err)
+	}
 	defer db.Close()
 
 	router := routes.SetupRouter()
@@ -22,7 +25,7 @@ func main() {
 
 	log.Printf("Starting server on port %s", port)
 
-	err := http.ListenAndServe(":"+port, router)
+	err = http.ListenAndServe(":"+port, router)
 	if err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}

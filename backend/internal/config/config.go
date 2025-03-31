@@ -2,8 +2,18 @@ package config
 
 import (
 	"fmt"
+	"log"
 	"os"
+
+	"github.com/joho/godotenv"
 )
+
+func init() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalf("Error loading .env file: %v", err)
+	}
+}
 
 func GetDatabaseURL() string {
 	if url := os.Getenv("DATABASE_URL"); url != "" {
