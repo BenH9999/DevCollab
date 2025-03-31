@@ -9,7 +9,7 @@ const MOCK_USERS = [
     id: '1',
     email: 'test@example.com',
     name: 'Test User',
-    password: 'password123', // In a real app, passwords would be hashed
+    password: 'password123',
   },
 ];
 
