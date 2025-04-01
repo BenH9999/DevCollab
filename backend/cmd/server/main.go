@@ -21,7 +21,10 @@ func main() {
 		log.Fatalf("Failed to run migrations: %v", err)
 	}
 
-	router := routes.SetupRouter()
+	router, err := routes.SetupRouter()
+	if err != nil {
+		log.Fatalf("Failed to setup router: %v", err)
+	}
 
 	port := os.Getenv("PORT")
 	if port == "" {

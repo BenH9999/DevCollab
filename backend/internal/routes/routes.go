@@ -7,14 +7,12 @@ import (
 	_"github.com/BenH9999/DevCollab/backend/internal/handlers"
 )
 
-func SetupRouter() http.Handler {
+func SetupRouter() (http.Handler, error) {
 	mux := http.NewServeMux()
 
-	//mux.HandleFunc("/api/login", handlers.Login)
-	//mux.HandleFunc("/api/register", handlers.Register)
-	//mux.HandleFunc("/api/logout", handlers.Logout)
+	registerAuthRoutes(mux)
 
 	fmt.Println("Routes setup successfully")
 	
-	return mux
+	return mux, nil
 }
