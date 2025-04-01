@@ -16,6 +16,11 @@ func main() {
 	}
 	defer db.Close()
 
+	err = db.RunMigrations()
+	if err != nil {
+		log.Fatalf("Failed to run migrations: %v", err)
+	}
+
 	router := routes.SetupRouter()
 
 	port := os.Getenv("PORT")
@@ -28,6 +33,5 @@ func main() {
 	err = http.ListenAndServe(":"+port, router)
 	if err != nil {
 		log.Fatalf("Failed to start server: %v", err)
-	}
-	
+	}	
 }
