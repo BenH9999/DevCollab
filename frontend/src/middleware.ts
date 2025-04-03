@@ -56,8 +56,12 @@ const generateMatcherPatterns = (routes: string[]) => {
 export const config = {
   matcher: [
     // Protected routes
-    ...generateMatcherPatterns(protectedRoutes),
+    '/dashboard/:path*',
+    '/profile/:path*',
+    '/projects/:path*',
+    '/editor/:path*',
     // Auth routes
-    ...generateMatcherPatterns(authRoutes),
+    '/auth/login/:path*',
+    '/auth/register/:path*',
   ],
 }; 
