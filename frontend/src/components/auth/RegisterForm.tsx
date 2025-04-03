@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Input, FormError, SubmitButton } from '@/components/ui';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
+import { getUserData } from '@/lib/auth';
 
 export function RegisterForm() {
   const [email, setEmail] = useState('');
@@ -28,9 +29,15 @@ export function RegisterForm() {
         throw new Error(result.error);
       }
 
-      // Navigate to dashboard on success
-      router.push('/dashboard');
-      router.refresh();
+      // Give a small delay to ensure context is updated
+      setTimeout(() => {
+        // Get user data to confirm it's set
+        const userData = getUserData();
+        console.log('User data before navigation:', userData);
+        
+        // Navigate to dashboard
+        router.push('/dashboard');
+      }, 300); // 300ms delay
     } catch (err: any) {
       setError(err.message || 'An unexpected error occurred');
     } finally {

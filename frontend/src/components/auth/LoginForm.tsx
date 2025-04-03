@@ -22,7 +22,7 @@ export function LoginForm() {
     try {
       // Use the login function from AuthContext
       const result = await login(email, password);
-      
+
       if (!result.success) {
         throw new Error(result.error);
       }
@@ -40,7 +40,7 @@ export function LoginForm() {
   return (
     <div className="w-full max-w-sm">
       <FormError message={error} className="mb-4" />
-      
+
       <form className="space-y-6" onSubmit={handleSubmit}>
         <Input
           id="email"

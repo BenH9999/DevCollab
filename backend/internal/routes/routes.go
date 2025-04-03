@@ -1,10 +1,11 @@
 package routes
 
 import (
-	"net/http"
 	"fmt"
+	"net/http"
 
-	_"github.com/BenH9999/DevCollab/backend/internal/handlers"
+	_ "github.com/BenH9999/DevCollab/backend/internal/handlers"
+	"github.com/BenH9999/DevCollab/backend/internal/middleware"
 )
 
 func SetupRouter() (http.Handler, error) {
@@ -13,6 +14,9 @@ func SetupRouter() (http.Handler, error) {
 	registerAuthRoutes(mux)
 
 	fmt.Println("Routes setup successfully")
-	
-	return mux, nil
+
+	// Wrap the router with CORS middleware
+	handler := middleware.CORSMiddleware(mux)
+
+	return handler, nil
 }

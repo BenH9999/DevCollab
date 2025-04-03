@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
-import { getUserData, setAuthData, clearAuthData, isAuthenticated as checkAuth } from '@/lib/auth';
+import { getUserData, setAuthData, clearAuthData, isAuthenticated as checkAuth, refreshToken as refreshAuthToken } from '@/lib/auth';
 
 type User = {
   id: string;
@@ -17,6 +17,9 @@ interface AuthContextType {
   login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
   register: (name: string, email: string, password: string) => Promise<{ success: boolean; error?: string }>;
   logout: () => Promise<void>;
+  refreshToken: () => Promise<boolean>;
+  setUser: (user: User) => void;
+  setIsAuthenticated: (isAuthenticated: boolean) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -48,7 +51,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     // Add listener for auth state changes (e.g., when another tab logs out)
     const handleStorageChange = (event: StorageEvent) => {
-      if (event.key === 'isLoggedIn' || event.key === 'userData') {
+      if (event.key === 'isLoggedIn' || event.key === 'userData' || event.key === 'refresh-token') {
         checkAuthentication();
       }
     };
@@ -72,11 +75,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const data = await response.json();
 
       if (!response.ok) {
-        return { success: false, error: data.message || 'Login failed' };
+        return { success: false, error: data.message || data.error || 'Login failed' };
       }
 
-      // Set auth data
-      setAuthData(data.token, {
+      // Set auth data with token and refresh token
+      setAuthData(data.token, data.refresh_token, {
         id: data.id,
         email: data.email,
         name: data.name
@@ -110,11 +113,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const data = await response.json();
 
       if (!response.ok) {
-        return { success: false, error: data.message || 'Registration failed' };
+        return { success: false, error: data.message || data.error || 'Registration failed' };
       }
 
-      // Set auth data
-      setAuthData(data.token, {
+      // Set auth data with token and refresh token
+      setAuthData(data.token, data.refresh_token, {
         id: data.id,
         email: data.email,
         name: data.name
@@ -138,8 +141,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   // Logout function
   const logout = async () => {
     try {
+      // Get refresh token to send to server
+      const refreshToken = localStorage.getItem('refresh-token');
+      
       await fetch('/api/auth/logout', {
         method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ refresh_token: refreshToken }),
         credentials: 'include',
       });
     } catch (error) {
@@ -154,6 +162,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  // Refresh token function
+  const refreshToken = async () => {
+    const success = await refreshAuthToken();
+    return success;
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -162,7 +176,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isLoading,
         login,
         register,
-        logout
+        logout,
+        refreshToken,
+        setUser,
+        setIsAuthenticated
       }}
     >
       {children}

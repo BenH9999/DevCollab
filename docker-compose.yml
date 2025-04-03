@@ -39,6 +39,7 @@ services:
       DB_USER: ${DB_USER:-postgres}
       DB_PASSWORD: ${DB_PASSWORD:-postgres}
       DB_NAME: ${DB_NAME:-DevCollab}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-S3cr3tK3y_F0r_JWT_Auth3nt1c4t10n_T0k3ns}
     restart: unless-stopped
     networks:
       - DevCollab-network

@@ -16,6 +16,7 @@ RUN apk --no-cache add ca-certificates bash
 WORKDIR /root/
 COPY --from=builder /app/server .
 COPY --from=builder /wait-for-it.sh /wait-for-it.sh
+COPY --from=builder /app/internal /root/internal
 
 EXPOSE 8080
 ENTRYPOINT ["/bin/bash", "-c", "/wait-for-it.sh postgres:5432 -t 60 -- ./server"]
