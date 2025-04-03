@@ -37,7 +37,7 @@ export function AuthHeader() {
             
             <div className="flex items-center gap-4">
               <div className="text-gray-300">
-                {user?.name && <span>Welcome, {user.name}</span>}
+                {user?.name && <span>{user.name}</span>}
               </div>
               <LogoutButton />
             </div>
