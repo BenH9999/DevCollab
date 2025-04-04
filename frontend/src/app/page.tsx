@@ -1,9 +1,9 @@
 // frontend/src/app/page.tsx
 'use client';
-import { HeroSection } from '@/components/landing/sections/HeroSection';
-import { FeaturesSection } from '@/components/landing/sections/FeaturesSection';
-import { HowItWorksSection } from '@/components/landing/sections/HowItWorksSection';
-import { CTASection } from '@/components/landing/sections/CTASection';
+import { HeroSection } from '@/components/landing/HeroSection';
+import { FeaturesSection } from '@/components/landing/FeaturesSection';
+import { HowItWorksSection } from '@/components/landing/HowItWorksSection';
+import { CTASection } from '@/components/landing/CTASection';
 import { Footer } from '@/components/layout/Footer';
 import { ConditionalHeader } from '@/components/layout/ConditionalHeader';
 
