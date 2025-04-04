@@ -5,15 +5,7 @@ import { FeaturesSection } from '@/components/landing/sections/FeaturesSection';
 import { HowItWorksSection } from '@/components/landing/sections/HowItWorksSection';
 import { CTASection } from '@/components/landing/sections/CTASection';
 import { Footer } from '@/components/layout/Footer';
-import { Header } from '@/components/layout/Header';
-import { AuthHeader } from '@/components/layout/AuthHeader';
-import { useAuth } from '@/context/AuthContext';
-
-function ConditionalHeader() {
-  const { isAuthenticated } = useAuth();
-  
-  return isAuthenticated ? <AuthHeader /> : <Header />;
-}
+import { ConditionalHeader } from '@/components/layout/ConditionalHeader';
 
 export default function Home() {
   return (
