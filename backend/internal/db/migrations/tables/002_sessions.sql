@@ -1,4 +1,4 @@
-CREATE TABLE sessions (
+CREATE TABLE IF NOT EXISTS sessions (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL REFERENCES users(id),
     token VARCHAR(255) NOT NULL UNIQUE,
