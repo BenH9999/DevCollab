@@ -12,6 +12,7 @@ func SetupRouter() (http.Handler, error) {
 	mux := http.NewServeMux()
 
 	registerAuthRoutes(mux)
+	registerProjectRoutes(mux)
 
 	fmt.Println("Routes setup successfully")
 
