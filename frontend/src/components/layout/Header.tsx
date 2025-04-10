@@ -11,8 +11,8 @@ export function Header() {
             DevCollab
           </Link>
           <div className="flex gap-4">
-            <Button href="/auth/login" variant='primary'>Login</Button>
-            <Button href="/auth/register" variant='secondary'>Signup</Button>
+            <Button href="/login" variant='primary'>Login</Button>
+            <Button href="/register" variant='secondary'>Signup</Button>
           </div>
         </div>
       </div>
